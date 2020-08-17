@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "myang"
+    }
+  },
+  "defaultProject": "myang",
+  "cli": {
+    "analytics": "7fae8aaa-44db-4841-b762-bc44515dceb4"
+  }
 }
