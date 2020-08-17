@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <div class="card">
+        <div class="card-header">
+          Display Data
+        </div>
+        <div class="card-body">
+          <p>{{ title }}</p>
+
+          <ul>
+            <li *ngFor="let hero of heroes">
+              {{ hero }}
+            </li>
+            <p *ngIf="heroes.length > 3">There are many heroes!</p>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <div class="card">
+        <div class="card-header">
+          Form Input
+        </div>
+        <div class="card-body">
+          <input class="form-control" (keyup)="onKey($event)">
+          <p>Value: {{ input }}</p>
+          <button class="btn btn-outline-primary" (click)="onClickMe()">Click me!</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <div class="card">
+        <div class="card-header">
+          Attribute directives
+        </div>
+        <div class="card-body">
+          <p appHighlight="blue">Highlight me!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-3">
+      <div class="card">
+        <div class="card-header">
+          Structural Directives
+        </div>
+        <div class="card-body">
+          <p *ngIf="hero">{{ hero }}</p>
+
+          <select class="form-control" [(ngModel)]="hero">
+            <ng-container *ngFor="let item of heroes">
+              <option [ngValue]="item">{{ item }}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
