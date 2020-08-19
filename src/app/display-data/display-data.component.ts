@@ -13,7 +13,11 @@ export class DisplayDataComponent implements OnInit {
   heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
   hero = this.heroes[0];
   input = '';
-  data: any;
+  data: undefined;
+
+  time = new Observable<string>(observer => {
+    setInterval(() => observer.next(new Date().toString()), 1000);
+  });
 
   constructor(private http : HttpClient) {
   }
@@ -32,6 +36,14 @@ export class DisplayDataComponent implements OnInit {
 
   getData(): Observable<any> {
     return this.http.get('https://m.ibolero.vn/info/banner');
+  }
+
+  isNotUndefined(check) {
+    return typeof check != 'undefined'
+  }
+
+  subInputChange(event) {
+    console.log(event)
   }
 
 }

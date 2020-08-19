@@ -65,5 +65,25 @@
         </div>
       </div>
     </div>
+
+    <div class="col-12 mt-3">
+      <div class="card">
+        <div class="card-header">
+          EventEmitter And Sub Component
+        </div>
+        <div class="card-body">
+          <ng-container *ngIf="isNotUndefined(data)">
+            <app-sub-data
+              [dataParent]="data[0].thumbnail_url"
+              (checkedChange)="subInputChange($event)"></app-sub-data>
+          </ng-container>
+
+          <div><code>observable|async</code>:
+            Time: {{ time | async }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 mt-5"></div>
   </div>
 </div>
