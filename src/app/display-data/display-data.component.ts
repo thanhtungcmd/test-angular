@@ -1,6 +1,8 @@
-import {Component, Directive, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { increment, decrement, reset } from '../action/counter.action';
 
 @Component({
   selector: 'app-display-data',
@@ -15,11 +17,17 @@ export class DisplayDataComponent implements OnInit {
   input = '';
   data: undefined;
 
+  count$: Observable<number>
+
   time = new Observable<string>(observer => {
     setInterval(() => observer.next(new Date().toString()), 1000);
   });
 
-  constructor(private http : HttpClient) {
+  constructor(
+    private http : HttpClient,
+    private store: Store<{count: number}>
+    ) {
+    this.count$ = store.pipe(select('count'));
   }
 
   ngOnInit(): void {
@@ -43,7 +51,16 @@ export class DisplayDataComponent implements OnInit {
   }
 
   subInputChange(event) {
-    console.log(event)
+  }
+
+  increment() {
+    this.store.dispatch(increment());
+  }
+  decrement() {
+    this.store.dispatch(decrement());
+  }
+  reset() {
+    this.store.dispatch(reset());
   }
 
 }
