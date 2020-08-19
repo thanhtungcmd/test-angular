@@ -12,7 +12,14 @@
             <li *ngFor="let hero of heroes">
               {{ hero }}
             </li>
-            <p *ngIf="heroes.length > 3">There are many heroes!</p>
+          </ul>
+          <p *ngIf="heroes.length > 3">There are many heroes!</p>
+
+          <p>Get Data from api</p>
+          <ul>
+            <li *ngFor="let item of data">
+              {{ item.description }}
+            </li>
           </ul>
         </div>
       </div>

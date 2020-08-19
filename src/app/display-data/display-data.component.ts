@@ -1,4 +1,6 @@
 import {Component, Directive, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-display-data',
@@ -11,11 +13,15 @@ export class DisplayDataComponent implements OnInit {
   heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
   hero = this.heroes[0];
   input = '';
+  data: any;
 
-  constructor() {
+  constructor(private http : HttpClient) {
   }
 
   ngOnInit(): void {
+    this.getData().subscribe(data => {
+      this.data = data.data;
+    });
   }
 
   onKey(event: any) {
@@ -23,5 +29,9 @@ export class DisplayDataComponent implements OnInit {
   }
 
   onClickMe(){}
+
+  getData(): Observable<any> {
+    return this.http.get('https://m.ibolero.vn/info/banner');
+  }
 
 }
